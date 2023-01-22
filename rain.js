@@ -3,49 +3,39 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 var ctx = canvas.getContext("2d");
-
-ctx.strokeStyle = "#0F0";
-ctx.beginPath();
-ctx.moveTo(0, 0);
-ctx.lineTo(window.innerWidth / 2, window.innerHeight / 2);
-ctx.stroke();
-console.log('Hi mom')
 document.body.appendChild(canvas)
 var y = 0;
+const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
+
 function drow() {
+    if (y > canvas.height)
+        y = 0;
+    y += 50;
+    blackTush()
+    for (let x = 0; x < canvas.width; x += 50) {
+        writeASymbol(x);
+    }
+}
+
+
+function blackTush() {
+    ctx.fillStyle = "rgba(0,0,0,0.1)"
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
+function writeASymbol(x) {
     ctx.fillStyle = "#0F0";
     ctx.font = "50px serif";
-    y += 50;
-    ctx.fillText(randomMatrixSymbol(), 30, y);
+    ctx.fillText(randomMatrixSymbol(), x, y);
 }
 setInterval(drow, 100);
 
 function randomMatrixSymbol() {
-    const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
-    function drow() {
-        {
-
-          if (y > canvas.height)
-            y = 0;
-        }
-        y += 50;
-        blackTush()
-        writeASymbol();
-    }
-    function blackTush() {
-        ctx.fillStyle = "rgba(0,0,0,0.1"
-        ctx.fillRect(0,0,canvas.width,canvas.height);
-    }
-        function writeASymbol() {
-            ctx.fillStyle = "#0F0";
-            ctx.font = "50px serif";
-            ctx.fillText(randomMatrixSymbol() , 30 , y);
-        }
-        setInterval(drow,100);
+    
     const randomCharIndex = getRandomInt(chars.length);
     return chars[randomCharIndex];
-
 }
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
