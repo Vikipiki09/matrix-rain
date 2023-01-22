@@ -23,6 +23,11 @@ setInterval(drow, 100);
 function randomMatrixSymbol() {
     const chars = "ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
     function drow() {
+        {
+
+          if (y > canvas.height)
+            y = 0;
+        }
         y += 50;
         blackTush()
         writeASymbol();
